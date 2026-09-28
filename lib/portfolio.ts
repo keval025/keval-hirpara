@@ -463,7 +463,7 @@ export const playground = [
   {
     id: 'kinetic-type',
     title: 'Kinetic Type',
-    note: 'Type your name, then move across the letters to watch them swell and lean. Variable font weight, no library.',
+    note: 'Type your name, then move your cursor (or drag a finger) across the letters to watch them swell and lean.',
     tag: 'Typography',
   },
 ] as const

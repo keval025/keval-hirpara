@@ -437,9 +437,31 @@ function Pathfinder() {
 /* Kinetic Type                                                        */
 /* ------------------------------------------------------------------ */
 
+const NAME_KEY = 'pf-kinetic-name'
+
 function KineticType({ defaultWord = 'KEVAL' }: { defaultWord?: string }) {
   const [name, setName] = useState('')
   const letters = useRef<(HTMLSpanElement | null)[]>([])
+  const resetTimer = useRef<number | null>(null)
+
+  // Remember the visitor's name so it survives reloads and moving between
+  // the home page and /playground.
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(NAME_KEY)
+      if (saved) setName(saved)
+    } catch {}
+  }, [])
+  const updateName = (value: string) => {
+    setName(value)
+    try {
+      if (value.trim()) localStorage.setItem(NAME_KEY, value)
+      else localStorage.removeItem(NAME_KEY)
+    } catch {}
+  }
+  useEffect(() => () => {
+    if (resetTimer.current !== null) window.clearTimeout(resetTimer.current)
+  }, [])
   const word = (name.trim() || defaultWord).toUpperCase()
   const chars = word.split('')
   letters.current.length = chars.length
@@ -448,6 +470,8 @@ function KineticType({ defaultWord = 'KEVAL' }: { defaultWord?: string }) {
   const fontSize = `clamp(2rem, ${Math.min(11, 55 / chars.length)}vw, ${Math.min(8, 40 / chars.length)}rem)`
 
   const onMove = (e: React.PointerEvent) => {
+    if (resetTimer.current !== null) window.clearTimeout(resetTimer.current)
+    resetTimer.current = null
     for (const el of letters.current) {
       if (!el) continue
       const rect = el.getBoundingClientRect()
@@ -460,7 +484,7 @@ function KineticType({ defaultWord = 'KEVAL' }: { defaultWord?: string }) {
       el.style.color = t > 0.75 ? 'var(--pf-accent)' : ''
     }
   }
-  const onLeave = () => {
+  const reset = () => {
     for (const el of letters.current) {
       if (!el) continue
       el.style.fontVariationSettings = ''
@@ -469,13 +493,22 @@ function KineticType({ defaultWord = 'KEVAL' }: { defaultWord?: string }) {
       el.style.color = ''
     }
   }
+  // A finger lifts off instantly, so let the effect linger briefly on touch.
+  const onLeave = (e: React.PointerEvent) => {
+    if (e.pointerType === 'mouse') return reset()
+    if (resetTimer.current !== null) window.clearTimeout(resetTimer.current)
+    resetTimer.current = window.setTimeout(reset, 900)
+  }
 
   return (
     <div className="flex h-full flex-col">
       <div
+        onPointerDown={onMove}
         onPointerMove={onMove}
         onPointerLeave={onLeave}
-        className="flex min-h-0 flex-1 cursor-crosshair select-none items-center justify-center overflow-hidden px-4"
+        onPointerCancel={onLeave}
+        // pan-y: vertical swipes still scroll the page; horizontal drags drive the effect.
+        className="flex min-h-0 flex-1 cursor-crosshair touch-pan-y select-none items-center justify-center overflow-hidden px-4"
       >
         <p aria-label={word} className="flex whitespace-pre leading-none tracking-[-0.04em]" style={{ fontSize }}>
           {chars.map((ch, i) => (
@@ -496,7 +529,7 @@ function KineticType({ defaultWord = 'KEVAL' }: { defaultWord?: string }) {
         <input
           type="text"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e) => updateName(e.target.value)}
           maxLength={14}
           placeholder="Type your name…"
           aria-label="Your name"
@@ -505,7 +538,7 @@ function KineticType({ defaultWord = 'KEVAL' }: { defaultWord?: string }) {
           className="min-w-0 flex-1 rounded-full border border-[var(--pf-line)] bg-transparent px-4 py-1.5 text-sm outline-none transition-colors focus:border-[var(--pf-fg)]"
         />
         {name && (
-          <button type="button" onClick={() => setName('')} className="pf-chip shrink-0 hover:border-[var(--pf-fg)]">
+          <button type="button" onClick={() => updateName('')} className="pf-chip shrink-0 hover:border-[var(--pf-fg)]">
             Reset
           </button>
         )}
