@@ -71,7 +71,7 @@ export function SiteHeader() {
         <Link href="/" className="text-sm font-medium tracking-tight">
           <span className="pf-roll">
             <span>{profile.name}</span>
-            <span>Full-stack dev ↗</span>
+            <span>{profile.role} ↗</span>
           </span>
         </Link>
 

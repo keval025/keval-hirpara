@@ -12,6 +12,8 @@ const container = 'mx-auto max-w-[1440px] px-4 sm:px-8'
 
 export default function PortfolioHome() {
   const marquee = skills.flatMap((g) => g.items)
+  // Product case studies already lead the page; the index lists things built.
+  const built = projects.filter((p) => !p.kind.startsWith('Product'))
 
   return (
     <>
@@ -20,12 +22,10 @@ export default function PortfolioHome() {
         <div className="pf-mono pf-muted mb-12 grid grid-cols-2 gap-4 md:mb-20 md:grid-cols-4">
           <span>Portfolio ©{new Date().getFullYear()}</span>
           <span className="hidden md:block">{profile.role}</span>
-          <span className="hidden md:block">
-            {profile.currently.company} ({profile.currently.note})
-          </span>
-          <span className="flex items-center justify-end gap-2">
-            <span className="pf-pulse inline-block h-1.5 w-1.5 rounded-full bg-[var(--pf-accent)]" />
-            Open to opportunities
+          <span className="hidden md:block">{profile.focus}</span>
+          <span className="flex items-start justify-end gap-2 text-right">
+            <span className="pf-pulse mt-[0.3em] inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--pf-accent)]" />
+            {profile.status}
           </span>
         </div>
 
@@ -42,23 +42,23 @@ export default function PortfolioHome() {
 
         <div className="mt-12 grid gap-10 md:mt-20 md:grid-cols-12">
           <p className="text-[clamp(1.5rem,3vw,2.4rem)] leading-[1.15] tracking-[-0.02em] md:col-span-7">
-            Full-stack developer building <em className="pf-serif text-[1.1em]">real-world</em> products on the
-            web — from pixel-tight interfaces to the <em className="pf-serif text-[1.1em]">systems</em> behind
-            them.
+            AI product manager turning <em className="pf-serif text-[1.1em]">messy</em> AI problems into products
+            people <em className="pf-serif text-[1.1em]">trust</em> — from the data models learn on to the features
+            people use.
           </p>
           <div className="flex flex-col justify-end gap-6 md:col-span-4 md:col-start-9">
             <p className="pf-muted">
-              Currently {profile.currently.title} at{' '}
+              Previously on embodied-AI and robotics datasets at{' '}
               <span className="text-[var(--pf-fg)]">
-                {profile.currently.company} ({profile.currently.note})
+                {profile.company.name} ({profile.company.note})
               </span>
-              . {profile.education.degree} from {profile.education.school}. Based in {profile.location}.
+              . {profile.education.degree}, {profile.education.school}. Based in {profile.location}.
             </p>
             <div className="flex flex-wrap gap-3">
-              <Link href="#projects" className="pf-btn">
+              <Link href="#case-studies" className="pf-btn">
                 <span className="pf-roll">
-                  <span>See the work</span>
-                  <span>See the work</span>
+                  <span>Read the case studies</span>
+                  <span>Read the case studies</span>
                 </span>
                 <ArrowRight size={16} />
               </Link>
@@ -96,7 +96,7 @@ export default function PortfolioHome() {
           label="About"
           title={
             <>
-              Problem solver <em className="pf-serif">first</em>, developer second.
+              Product thinking, <em className="pf-serif">with a builder’s hands.</em>
             </>
           }
         />
@@ -134,40 +134,17 @@ export default function PortfolioHome() {
         </Reveal>
       </section>
 
-      {/* ------------------------------------------------------ Projects */}
-      <section id="projects" className={`${container} scroll-mt-20 py-20 md:py-32`}>
-        <SectionHeading
-          index="02"
-          label="Projects"
-          title={
-            <>
-              Selected <em className="pf-serif">work</em>
-            </>
-          }
-          aside={
-            <>
-              {projects.length} projects · {projects[projects.length - 1].year}—{projects[0].year}
-              <br />
-              <a href={profile.links[0].href} target="_blank" rel="noreferrer" className="pf-link text-[var(--pf-fg)]">
-                All repositories on GitHub ↗
-              </a>
-            </>
-          }
-        />
-        <ProjectIndex projects={projects} />
-      </section>
-
       {/* -------------------------------------------------- Case studies */}
       <section id="case-studies" className={`${container} scroll-mt-20 py-20 md:py-32`}>
         <SectionHeading
-          index="03"
+          index="02"
           label="Case Studies"
           title={
             <>
-              How the work <em className="pf-serif">gets made</em>
+              Product <em className="pf-serif">case studies</em>
             </>
           }
-          aside="Deep dives into the problem, the decisions, and what I learned."
+          aside="Problem framing, metrics, prioritization and rollout — the full reasoning, start to finish."
         />
         <div className="grid gap-x-6 gap-y-14 md:grid-cols-2">
           {caseStudies.map((study, i) => {
@@ -198,6 +175,29 @@ export default function PortfolioHome() {
             )
           })}
         </div>
+      </section>
+
+      {/* ------------------------------------------------------ Projects */}
+      <section id="projects" className={`${container} scroll-mt-20 py-20 md:py-32`}>
+        <SectionHeading
+          index="03"
+          label="Projects"
+          title={
+            <>
+              Things I’ve <em className="pf-serif">built</em>
+            </>
+          }
+          aside={
+            <>
+              {built.length} projects · {built[built.length - 1].year}—{built[0].year}
+              <br />
+              <a href={profile.links[0].href} target="_blank" rel="noreferrer" className="pf-link text-[var(--pf-fg)]">
+                All repositories on GitHub ↗
+              </a>
+            </>
+          }
+        />
+        <ProjectIndex projects={built} />
       </section>
 
       {/* ---------------------------------------------------- Playground */}

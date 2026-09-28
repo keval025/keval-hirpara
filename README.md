@@ -1,13 +1,13 @@
 # Keval Hirpara — Portfolio
 
-Personal portfolio of **Keval Hirpara**, full-stack developer in Bengaluru and Tech – Operations Manager at Human Archive (YC W26).
+Personal portfolio of **Keval Hirpara**, AI Product Manager in Bengaluru.
 
 Minimal, editorial design with light/dark themes. Sections:
 
 | Route | Contents |
 | --- | --- |
-| `/` | Hero, about & skills, project index, case studies, playground, contact |
-| `/case-studies/[slug]` | Case studies: Auros, Atelier, YouTube Script Agent, AURELIA |
+| `/` | Hero, about & skills, case studies, project index, playground, contact |
+| `/case-studies/[slug]` | Product case studies (WhatsApp Scheduled Messages, Embodied AI Data Yield) and engineering case studies (Auros, Atelier, YouTube Script Agent, AURELIA) |
 | `/playground` | Interactive experiments: dot field, sort visualizer, BFS pathfinder, kinetic type |
 
 ## Stack

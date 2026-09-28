@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     default: `${profile.name} — ${profile.role}`,
     template: `%s — ${profile.name}`,
   },
-  description: `${profile.name} is a full-stack developer in ${profile.location}. Projects, case studies, playground experiments, and contact.`,
+  description: `${profile.name} is an AI product manager in ${profile.location}. Product case studies, projects, playground experiments, and contact.`,
   openGraph: {
     title: `${profile.name} — ${profile.role}`,
     description: profile.headline,

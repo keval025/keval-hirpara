@@ -7,7 +7,7 @@ const WEB3FORMS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_KEY
 const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit'
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-const topics = ['Full-time role', 'Freelance project', 'Collaboration', 'Just saying hi']
+const topics = ['AI PM role', 'Product collaboration', 'Feedback on a case study', 'Just saying hi']
 
 type Status = 'idle' | 'sending' | 'sent' | 'error'
 

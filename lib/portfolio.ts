@@ -6,22 +6,22 @@
 export const profile = {
   name: 'Keval Hirpara',
   shortName: 'Keval',
-  role: 'Full-Stack Developer & Problem Solver',
-  headline: 'I build real-world products on the web — and the systems behind them.',
+  role: 'AI Product Manager',
+  headline: 'I turn messy AI problems into products people trust — from the data models learn on to the features people use.',
   location: 'Bengaluru, India',
   timezone: 'Asia/Kolkata',
-  currently: {
-    title: 'Tech – Operations Manager',
-    company: 'Human Archive',
-    note: 'YC W26',
-  },
+  /** Shown in the hero and header; update when your job search changes. */
+  status: 'Open to AI Product Manager roles',
+  focus: 'Embodied AI · Data quality · AI agents',
+  company: { name: 'Human Archive', note: 'YC W26' },
   education: {
     school: 'SVNIT Surat',
     degree: 'B.Tech in Electrical Engineering',
   },
   bio: [
-    'I’m Keval, a full-stack developer based in Bengaluru. I currently work as Tech – Operations Manager at Human Archive (YC W26), where I sit between engineering and operations — shipping internal tooling and keeping the machine running.',
-    'I studied Electrical Engineering at SVNIT Surat and grew up as an engineer through competitive programming: data structures, algorithms, and a lot of Codeforces. That habit of breaking problems down carries straight into how I build products — from design-system-driven frontends to backends, auth, and AI agent pipelines.',
+    'I’m Keval, an AI product manager in Bengaluru. I work on the problems between AI models and the real world — how training data gets collected, how quality is measured, and how AI features earn users’ trust.',
+    'At Human Archive (YC W26) I worked on embodied-AI and robotics datasets, where I learned that the hardest product questions in AI are often about data: what counts as usable, how failures are caught, and what they cost. My case studies go deep on exactly that.',
+    'I studied Electrical Engineering at SVNIT Surat and came up as a builder — full-stack apps, AI agent pipelines, and a lot of competitive programming. It means I can go deep with engineers on feasibility and trade-offs, then zoom back out to the user and the metric.',
   ],
   email: 'kevalhirpara2003@gmail.com',
   links: [
@@ -33,37 +33,52 @@ export const profile = {
 }
 
 export const navItems = [
-  { label: 'Projects', href: '/#projects' },
   { label: 'Case Studies', href: '/#case-studies' },
+  { label: 'Projects', href: '/#projects' },
   { label: 'Playground', href: '/playground' },
   { label: 'Contact', href: '/#contact' },
 ]
 
 export const skills = [
-  { group: 'Languages', items: ['C', 'C++', 'Python', 'JavaScript', 'TypeScript', 'SQL'] },
-  { group: 'Frontend', items: ['React', 'Next.js', 'Angular', 'Tailwind CSS', 'shadcn/ui', 'GSAP'] },
-  { group: 'Backend & Data', items: ['Node.js', 'Express', 'MongoDB', 'PostgreSQL', 'Drizzle ORM', 'Neon'] },
-  { group: 'Tools', items: ['Git', 'GitHub', 'Linux', 'Vercel', 'Notion', 'Claude Code'] },
+  {
+    group: 'Product',
+    items: ['Problem framing', 'User research & JTBD', 'North-star & metric trees', 'Prioritization (RICE, MoSCoW)', 'Experiment design', 'Go-to-market'],
+  },
+  {
+    group: 'AI & Data',
+    items: ['Embodied AI & robotics data', 'Data-quality pipelines', 'LLM agents & orchestration', 'Prompt & eval design', 'Root cause analysis', 'Unit economics'],
+  },
+  {
+    group: 'Technical',
+    items: ['Python', 'SQL', 'TypeScript', 'React & Next.js', 'Node.js', 'C++ & DSA'],
+  },
+  { group: 'Tools', items: ['Notion', 'Claude Code', 'Git & GitHub', 'Vercel', 'PostgreSQL', 'Linux'] },
 ]
 
 export const experience = [
   {
-    period: 'Now',
-    title: 'Tech – Operations Manager',
-    org: 'Human Archive (YC W26)',
-    detail: 'Bridging engineering and operations — internal tooling, data pipelines, and process automation.',
+    period: 'YC W26',
+    title: 'Embodied-AI & robotics datasets',
+    org: 'Human Archive',
+    detail: 'Worked on the collection and quality of real-world data used to train physical AI.',
+  },
+  {
+    period: '2026',
+    title: 'Product case studies',
+    org: 'Independent',
+    detail: 'WhatsApp scheduled messages; reducing unusable recordings in embodied-AI data collection.',
   },
   {
     period: 'Ongoing',
-    title: 'Full-Stack Developer',
+    title: 'Builder',
     org: 'Independent projects',
-    detail: 'Marketing sites, e-commerce storefronts, SaaS prototypes, and AI agent workflows.',
+    detail: 'Full-stack web apps, storefronts, SaaS prototypes, and multi-agent AI workflows.',
   },
   {
     period: 'Education',
     title: 'B.Tech, Electrical Engineering',
     org: 'SVNIT Surat',
-    detail: 'Competitive programming, DSA, and low-level system design in C++.',
+    detail: 'Competitive programming, DSA, and low-level system design.',
   },
 ]
 
