@@ -20,7 +20,7 @@ export const profile = {
   },
   bio: [
     'I’m Keval, an AI product manager in Bengaluru. I work on the problems between AI models and the real world — how training data gets collected, how quality is measured, and how AI features earn users’ trust.',
-    'At Human Archive (YC W26) I worked on embodied-AI and robotics datasets, where I learned that the hardest product questions in AI are often about data: what counts as usable, how failures are caught, and what they cost. My case studies go deep on exactly that.',
+    'In the Founder’s Office at Human Archive (YC W26) I worked on embodied-AI and robotics datasets, where I learned that the hardest product questions in AI are often about data: what counts as usable, how failures are caught, and what they cost. My case studies go deep on exactly that.',
     'I studied Electrical Engineering at SVNIT Surat and came up as a builder — full-stack apps, AI agent pipelines, and a lot of competitive programming. It means I can go deep with engineers on feasibility and trade-offs, then zoom back out to the user and the metric.',
   ],
   email: 'kevalhirpara2003@gmail.com',
@@ -57,10 +57,10 @@ export const skills = [
 
 export const experience = [
   {
-    period: 'YC W26',
-    title: 'Embodied-AI & robotics datasets',
-    org: 'Human Archive',
-    detail: 'Worked on the collection and quality of real-world data used to train physical AI.',
+    period: 'Previously',
+    title: 'Founder’s Office',
+    org: 'Human Archive (YC W26)',
+    detail: 'Worked on embodied-AI and robotics datasets — the collection and quality of real-world data used to train physical AI.',
   },
   {
     period: '2026',

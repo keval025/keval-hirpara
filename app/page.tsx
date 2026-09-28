@@ -48,11 +48,11 @@ export default function PortfolioHome() {
           </p>
           <div className="flex flex-col justify-end gap-6 md:col-span-4 md:col-start-9">
             <p className="pf-muted">
-              Previously on embodied-AI and robotics datasets at{' '}
+              Previously in the Founder’s Office at{' '}
               <span className="text-[var(--pf-fg)]">
                 {profile.company.name} ({profile.company.note})
               </span>
-              . {profile.education.degree}, {profile.education.school}. Based in {profile.location}.
+              , working on embodied-AI and robotics datasets. {profile.education.degree}, {profile.education.school}. Based in {profile.location}.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link href="#case-studies" className="pf-btn">
