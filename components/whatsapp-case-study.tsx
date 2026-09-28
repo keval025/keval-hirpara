@@ -1,71 +1,6 @@
-import type { ReactNode } from 'react'
-import { Reveal } from '@/components/reveal'
+import { Section, Table } from '@/components/case-study-kit'
 import { ScheduleMockup } from '@/components/schedule-mockup'
 import * as cs from '@/lib/case-studies/whatsapp-scheduled-messages'
-
-function Section({ index, label, title, children }: { index: string; label: string; title?: ReactNode; children: ReactNode }) {
-  return (
-    <Reveal as="section" className="grid gap-6 border-t border-[var(--pf-line)] py-12 md:grid-cols-12 md:py-16">
-      <h2 className="pf-mono pf-muted md:col-span-3">
-        {index} — {label}
-      </h2>
-      <div className="md:col-span-9">
-        {title && <p className="mb-8 text-[clamp(1.5rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.03em]">{title}</p>}
-        {children}
-      </div>
-    </Reveal>
-  )
-}
-
-function Table({ columns, rows, highlight }: { columns: string[]; rows: string[][]; highlight?: number }) {
-  return (
-    <>
-      {/* Stacked cards on small screens */}
-      <div className="space-y-3 md:hidden">
-        {rows.map((row) => (
-          <div key={row[0]} className="rounded-lg border border-[var(--pf-line)] p-4">
-            <p className="mb-2 font-medium">{row[0]}</p>
-            <dl className="space-y-1.5 text-sm">
-              {row.slice(1).map((cell, i) => (
-                <div key={i} className="grid grid-cols-[7.5rem_1fr] gap-2">
-                  <dt className="pf-muted">{columns[i + 1]}</dt>
-                  <dd className={highlight === i + 1 ? 'text-[var(--pf-accent)]' : ''}>{cell}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        ))}
-      </div>
-      <table className="hidden w-full border-collapse text-left text-sm md:table">
-        <thead>
-          <tr>
-            {columns.map((c) => (
-              <th key={c} className="pf-mono pf-muted border-b border-[var(--pf-line)] py-3 pr-4 font-normal">
-                {c}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row) => (
-            <tr key={row[0]} className="align-top">
-              {row.map((cell, i) => (
-                <td
-                  key={i}
-                  className={`border-b border-[var(--pf-line)] py-3.5 pr-4 ${i === 0 ? 'font-medium' : ''} ${
-                    highlight === i ? 'text-[var(--pf-accent)]' : i > 0 ? 'pf-muted' : ''
-                  }`}
-                >
-                  {cell}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </>
-  )
-}
 
 function Score({ value }: { value: number }) {
   return (
@@ -84,7 +19,7 @@ function Score({ value }: { value: number }) {
 const priorityTone = (p: string) =>
   p.startsWith('Must') ? 'bg-[var(--pf-fg)] text-[var(--pf-bg)]' : p.startsWith('Won') ? 'pf-muted line-through' : ''
 
-export function ProductCaseStudy() {
+export function WhatsAppCaseStudy() {
   return (
     <div className="mx-auto max-w-[1440px] px-4 py-16 sm:px-8 md:py-24">
       <p className="pf-muted mb-12 max-w-2xl border-l-2 border-[var(--pf-accent)] pl-4 text-sm">{cs.disclaimer}</p>

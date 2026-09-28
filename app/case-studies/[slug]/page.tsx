@@ -3,11 +3,18 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { Reveal } from '@/components/reveal'
-import { ProductCaseStudy } from '@/components/product-case-study'
+import { EmbodiedDataCaseStudy } from '@/components/embodied-data-case-study'
 import { ProjectCover } from '@/components/project-cover'
+import { WhatsAppCaseStudy } from '@/components/whatsapp-case-study'
 import { caseStudies, projects } from '@/lib/portfolio'
 
 type Props = { params: Promise<{ slug: string }> }
+
+/** Bespoke layouts for `format: 'product'` case studies, keyed by slug. */
+const productBodies: Record<string, React.ComponentType> = {
+  'whatsapp-scheduled-messages': WhatsAppCaseStudy,
+  'embodied-ai-data-quality': EmbodiedDataCaseStudy,
+}
 
 export const dynamicParams = false
 
@@ -28,6 +35,7 @@ export default async function CaseStudyPage({ params }: Props) {
   if (index === -1) notFound()
 
   const study = caseStudies[index]
+  const ProductBody = productBodies[study.slug]
   const project = projects.find((p) => p.slug === study.slug)!
   const next = caseStudies[(index + 1) % caseStudies.length]
   const nextProject = projects.find((p) => p.slug === next.slug)!
@@ -79,7 +87,7 @@ export default async function CaseStudyPage({ params }: Props) {
       </div>
 
       {study.format === 'product' ? (
-        <ProductCaseStudy />
+        ProductBody && <ProductBody />
       ) : (
         <div className="mx-auto max-w-[1440px] px-4 py-20 sm:px-8 md:py-28">
           <CaseSection label="Overview">
