@@ -6,7 +6,7 @@ import { PlaygroundGrid } from '@/components/playground'
 import { ProjectCover } from '@/components/project-cover'
 import { ProjectIndex } from '@/components/project-index'
 import { SectionHeading } from '@/components/section-heading'
-import { caseStudies, experience, profile, projects, skills } from '@/lib/portfolio'
+import { achievements, caseStudies, experience, profile, projects, skills } from '@/lib/portfolio'
 
 const container = 'mx-auto max-w-[1440px] px-4 sm:px-8'
 
@@ -52,7 +52,7 @@ export default function PortfolioHome() {
               <span className="text-[var(--pf-fg)]">
                 {profile.company.name} ({profile.company.note})
               </span>
-              , working on embodied-AI and robotics datasets. {profile.education.degree}, {profile.education.school}. Based in {profile.location}.
+              , working on embodied-AI and robotics data. {profile.education.degree}, {profile.education.school}. Based in {profile.location}.
             </p>
             <div className="flex flex-wrap gap-3">
               <Link href="#case-studies" className="pf-btn">
@@ -106,20 +106,54 @@ export default function PortfolioHome() {
               <p key={p}>{p}</p>
             ))}
           </Reveal>
-          <Reveal delay={120} className="md:col-span-4 md:col-start-9">
-            <p className="pf-mono pf-muted mb-4">Experience</p>
-            <ul>
-              {experience.map((e) => (
-                <li key={e.org} className="border-t border-[var(--pf-line)] py-4">
-                  <p className="pf-mono pf-muted mb-1">{e.period}</p>
-                  <p className="font-medium">{e.title}</p>
-                  <p className="text-sm">{e.org}</p>
-                  <p className="pf-muted mt-1 text-sm">{e.detail}</p>
-                </li>
-              ))}
-            </ul>
+          <Reveal delay={120} className="space-y-10 md:col-span-4 md:col-start-9">
+            <div>
+              <p className="pf-mono pf-muted mb-3">Education</p>
+              <p className="font-medium">{profile.education.degree}</p>
+              <p className="text-sm">{profile.education.school}</p>
+              <p className="pf-mono pf-muted mt-1">{profile.education.years}</p>
+            </div>
+            <div>
+              <p className="pf-mono pf-muted mb-3">Achievements</p>
+              <ul className="space-y-2">
+                {achievements.map((a) => (
+                  <li key={a} className="border-t border-[var(--pf-line)] pt-2 text-sm leading-relaxed">
+                    {a}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </Reveal>
         </div>
+
+        <div className="mt-16 md:mt-24">
+          <p className="pf-mono pf-muted mb-4">Experience</p>
+          <ol>
+            {experience.map((e) => (
+              <li key={`${e.org}-${e.title}`} className="list-none">
+                <Reveal className="grid gap-3 border-t border-[var(--pf-line)] py-8 md:grid-cols-12 md:gap-6">
+                  <p className="pf-mono pf-muted md:col-span-3">{e.period}</p>
+                  <div className="md:col-span-3">
+                    <p className="text-xl font-medium tracking-tight">{e.title}</p>
+                    <p>{e.org}</p>
+                    {e.meta && <p className="pf-muted mt-1 text-sm">{e.meta}</p>}
+                  </div>
+                  <ul className="space-y-2 md:col-span-6">
+                    {e.points.map((pt) => (
+                      <li key={pt} className="pf-muted flex gap-3 text-sm leading-relaxed">
+                        <span aria-hidden className="text-[var(--pf-accent)]">
+                          —
+                        </span>
+                        <span>{pt}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </Reveal>
+              </li>
+            ))}
+          </ol>
+        </div>
+
         <Reveal className="mt-16 grid gap-8 sm:grid-cols-2 md:mt-24 md:grid-cols-4">
           {skills.map((group) => (
             <div key={group.group}>

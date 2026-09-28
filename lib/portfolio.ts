@@ -15,13 +15,14 @@ export const profile = {
   focus: 'Embodied AI · Data quality · AI agents',
   company: { name: 'Human Archive', note: 'YC W26' },
   education: {
-    school: 'SVNIT Surat',
+    school: 'NIT Surat',
     degree: 'B.Tech in Electrical Engineering',
+    years: '2022 – 2026',
   },
   bio: [
     'I’m Keval, an AI product manager in Bengaluru. I work on the problems between AI models and the real world — how training data gets collected, how quality is measured, and how AI features earn users’ trust.',
-    'In the Founder’s Office at Human Archive (YC W26) I worked on embodied-AI and robotics datasets, where I learned that the hardest product questions in AI are often about data: what counts as usable, how failures are caught, and what they cost. My case studies go deep on exactly that.',
-    'I studied Electrical Engineering at SVNIT Surat and came up as a builder — full-stack apps, AI agent pipelines, and a lot of competitive programming. It means I can go deep with engineers on feasibility and trade-offs, then zoom back out to the user and the metric.',
+    'In the Founder’s Office at Human Archive (YC W26), a robotics and embodied-AI data startup, I tracked the end-to-end data pipeline — from on-robot collection to AWS storage — where I learned that the hardest product questions in AI are often about data: what counts as usable, how failures are caught, and what they cost. My case studies go deep on exactly that.',
+    'I studied Electrical Engineering at NIT Surat and came up as a builder — a software development internship, full-stack apps, AI agent pipelines, and 1,100+ competitive programming problems. It means I can go deep with engineers on feasibility and trade-offs, then zoom back out to the user and the metric.',
   ],
   email: 'kevalhirpara2003@gmail.com',
   links: [
@@ -42,44 +43,66 @@ export const navItems = [
 export const skills = [
   {
     group: 'Product',
-    items: ['Problem framing', 'User research & JTBD', 'North-star & metric trees', 'Prioritization (RICE, MoSCoW)', 'Experiment design', 'Go-to-market'],
+    items: ['Problem framing', 'Requirements & process mapping', 'North-star & metric trees', 'Prioritization (RICE, MoSCoW)', 'Experiment design', 'Stakeholder communication'],
   },
   {
     group: 'AI & Data',
-    items: ['Embodied AI & robotics data', 'Data-quality pipelines', 'LLM agents & orchestration', 'Prompt & eval design', 'Root cause analysis', 'Unit economics'],
+    items: ['Embodied AI & robotics data', 'Data pipelines & quality', 'Root cause analysis', 'LLM agents & orchestration', 'Operational reporting', 'Unit economics'],
   },
   {
     group: 'Technical',
-    items: ['Python', 'SQL', 'TypeScript', 'React & Next.js', 'Node.js', 'C++ & DSA'],
+    items: ['SQL', 'Python (Pandas, NumPy)', 'JavaScript & TypeScript', 'React & Next.js', 'Node.js & MongoDB', 'C++ & DSA'],
   },
-  { group: 'Tools', items: ['Notion', 'Claude Code', 'Git & GitHub', 'Vercel', 'PostgreSQL', 'Linux'] },
+  { group: 'Tools', items: ['Jira', 'Notion', 'Excel & Power BI', 'Git & GitHub', 'Google Colab', 'Claude Code'] },
 ]
 
-export const experience = [
+export type Experience = {
+  period: string
+  title: string
+  org: string
+  meta?: string
+  points: string[]
+}
+
+export const experience: Experience[] = [
   {
-    period: 'Previously',
+    period: 'Feb 2026 – Aug 2026',
     title: 'Founder’s Office',
     org: 'Human Archive (YC W26)',
-    detail: 'Worked on embodied-AI and robotics datasets — the collection and quality of real-world data used to train physical AI.',
+    meta: 'Robotics / embodied-AI data startup · Gurugram, India',
+    points: [
+      'Tracked and analyzed the end-to-end data pipeline — on-robot collection, processing, AWS-based storage — surfacing bottlenecks, delays and data-sync gaps across cross-functional teams.',
+      'Coordinated deployment, data collection, QA and offloading teams to keep operational workflows moving and unblock stalled handoffs.',
+      'Monitored pipeline stability and throughput, feeding operational visibility back into deployment and infrastructure priorities.',
+      'Ideated and built an internal Deployment & Inventory Tracker giving the team one view of device status and pending work.',
+    ],
   },
   {
-    period: '2026',
-    title: 'Product case studies',
-    org: 'Independent',
-    detail: 'WhatsApp scheduled messages; reducing unusable recordings in embodied-AI data collection.',
+    period: 'Jun 2025 – Jul 2025',
+    title: 'Software Development Intern',
+    org: 'Dvij InfoTech',
+    meta: 'Surat, India',
+    points: [
+      'Built full-stack features on the MERN stack (MongoDB, Express.js, Next.js, React.js, Node.js), translating functional requirements into working application components.',
+      'Improved front-end responsiveness and refactored components to reduce technical debt and improve long-term maintainability.',
+    ],
   },
   {
-    period: 'Ongoing',
-    title: 'Builder',
-    org: 'Independent projects',
-    detail: 'Full-stack web apps, storefronts, SaaS prototypes, and multi-agent AI workflows.',
+    period: 'Aug 2024 – Mar 2025',
+    title: 'Convenor, Co-Curricular Affairs Council',
+    org: 'NIT Surat',
+    meta: 'Leadership',
+    points: [
+      'Led 400+ volunteers to run 30+ events for 5,000+ participants at MindBend, Gujarat’s largest techno-managerial fest — owning planning, timelines and resource allocation.',
+      'Designed and ran a multi-channel outreach strategy across 50+ colleges, driving a 30% year-over-year increase in participation.',
+    ],
   },
-  {
-    period: 'Education',
-    title: 'B.Tech, Electrical Engineering',
-    org: 'SVNIT Surat',
-    detail: 'Competitive programming, DSA, and low-level system design.',
-  },
+]
+
+export const achievements = [
+  'Winner, FINFIESTA 2023 — organized by CEV, NIT Surat',
+  '1,100+ algorithmic problems solved across LeetCode and Codeforces; peak LeetCode rating 1642',
+  'Participant, Medecro HealthHack 2024 — organized by Medecro.AI',
 ]
 
 export type Project = {
@@ -89,7 +112,8 @@ export type Project = {
   kind: string
   stack: string[]
   year: string
-  href: string
+  /** Omit for internal work with no public link. */
+  href?: string
   live?: string
   caseStudy?: boolean
   /** Two colors used for the generated cover art. */
@@ -118,6 +142,25 @@ export const projects: Project[] = [
     href: 'https://app.notion.com/p/Case-Study-Reducing-Unusable-Recordings-in-Embodied-AI-Data-Collection-3e6aed45470881909155c902b754360d',
     caseStudy: true,
     palette: ['#0d1b2a', '#5ec8ff'],
+  },
+  {
+    slug: 'deployment-inventory-tracker',
+    title: 'Deployment & Inventory Tracker',
+    summary: 'Internal tool at Human Archive tracking devices across inventory, deployment, collection and offloading.',
+    kind: 'Internal tool · Operations',
+    stack: ['Web app', 'Ops lifecycle'],
+    year: '2026',
+    palette: ['#1c1917', '#f59e0b'],
+  },
+  {
+    slug: 'pdfoutliner',
+    title: 'PDFOutliner',
+    summary: 'Turns unstructured PDFs into hierarchical data — 50+ pages in under 10 s, under 200 MB.',
+    kind: 'Data · Document processing',
+    stack: ['Python', 'Regex heuristics', 'OCR'],
+    year: '2025',
+    href: 'https://github.com/keval025/PDF_metadata_extractor',
+    palette: ['#f4f4f1', '#dc2626'],
   },
   {
     slug: 'auros',
@@ -217,7 +260,7 @@ export const projects: Project[] = [
   {
     slug: 'dsa',
     title: 'DSA & Codeforces',
-    summary: 'Graphs, segment trees, and Codeforces problems rated 800–1300, all in C++.',
+    summary: '1,100+ problems across LeetCode and Codeforces (peak LeetCode 1642); graphs, segment trees, all in C++.',
     kind: 'Competitive programming',
     stack: ['C++', 'Algorithms'],
     year: '2025',

@@ -68,8 +68,10 @@ export function ProjectIndex({ projects }: { projects: Project[] }) {
                   {project.title}
                   {internal ? (
                     <span className="pf-chip ml-1 hidden sm:inline-flex">Case study</span>
-                  ) : (
+                  ) : href ? (
                     <ArrowUpRight size={18} className="pf-muted" />
+                  ) : (
+                    <span className="pf-chip pf-muted ml-1 hidden sm:inline-flex">Internal</span>
                   )}
                 </span>
                 <span className="pf-muted mt-1 block text-sm md:hidden">{project.summary}</span>
@@ -84,13 +86,15 @@ export function ProjectIndex({ projects }: { projects: Project[] }) {
           return (
             <li key={project.slug} onPointerEnter={(e) => e.pointerType === 'mouse' && setActive(i)}>
               {internal ? (
-                <Link href={href} className="block">
+                <Link href={href!} className="block">
                   {row}
                 </Link>
-              ) : (
+              ) : href ? (
                 <a href={href} target="_blank" rel="noreferrer" className="block">
                   {row}
                 </a>
+              ) : (
+                row
               )}
             </li>
           )
