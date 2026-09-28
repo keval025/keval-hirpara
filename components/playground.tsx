@@ -437,9 +437,15 @@ function Pathfinder() {
 /* Kinetic Type                                                        */
 /* ------------------------------------------------------------------ */
 
-function KineticType({ word = 'KEVAL' }: { word?: string }) {
-  const wrap = useRef<HTMLDivElement>(null)
+function KineticType({ defaultWord = 'KEVAL' }: { defaultWord?: string }) {
+  const [name, setName] = useState('')
   const letters = useRef<(HTMLSpanElement | null)[]>([])
+  const word = (name.trim() || defaultWord).toUpperCase()
+  const chars = word.split('')
+  letters.current.length = chars.length
+
+  // Shrink the type as the word gets longer so any name fits on one line.
+  const fontSize = `clamp(2rem, ${Math.min(11, 55 / chars.length)}vw, ${Math.min(8, 40 / chars.length)}rem)`
 
   const onMove = (e: React.PointerEvent) => {
     for (const el of letters.current) {
@@ -465,26 +471,45 @@ function KineticType({ word = 'KEVAL' }: { word?: string }) {
   }
 
   return (
-    <div
-      ref={wrap}
-      onPointerMove={onMove}
-      onPointerLeave={onLeave}
-      className="flex h-full cursor-crosshair select-none items-center justify-center overflow-hidden px-4"
-    >
-      <p aria-label={word} className="flex text-[clamp(3.5rem,11vw,8rem)] leading-none tracking-[-0.04em]">
-        {word.split('').map((ch, i) => (
-          <span
-            key={i}
-            aria-hidden
-            ref={(el) => {
-              letters.current[i] = el
-            }}
-            className="inline-block font-extralight transition-[font-weight,transform,color] duration-300 ease-out"
-          >
-            {ch}
-          </span>
-        ))}
-      </p>
+    <div className="flex h-full flex-col">
+      <div
+        onPointerMove={onMove}
+        onPointerLeave={onLeave}
+        className="flex min-h-0 flex-1 cursor-crosshair select-none items-center justify-center overflow-hidden px-4"
+      >
+        <p aria-label={word} className="flex whitespace-pre leading-none tracking-[-0.04em]" style={{ fontSize }}>
+          {chars.map((ch, i) => (
+            <span
+              key={`${word}-${i}`}
+              aria-hidden
+              ref={(el) => {
+                letters.current[i] = el
+              }}
+              className="inline-block font-extralight transition-[font-weight,transform,color] duration-300 ease-out"
+            >
+              {ch}
+            </span>
+          ))}
+        </p>
+      </div>
+      <div className="flex items-center gap-2 border-t border-[var(--pf-line)] p-3">
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          maxLength={14}
+          placeholder="Type your name…"
+          aria-label="Your name"
+          autoComplete="off"
+          spellCheck={false}
+          className="min-w-0 flex-1 rounded-full border border-[var(--pf-line)] bg-transparent px-4 py-1.5 text-sm outline-none transition-colors focus:border-[var(--pf-fg)]"
+        />
+        {name && (
+          <button type="button" onClick={() => setName('')} className="pf-chip shrink-0 hover:border-[var(--pf-fg)]">
+            Reset
+          </button>
+        )}
+      </div>
     </div>
   )
 }
