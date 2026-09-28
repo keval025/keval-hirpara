@@ -16,12 +16,12 @@ export const profile = {
     note: 'YC W26',
   },
   education: {
-    school: 'NIT Surat',
-    degree: 'B.Tech',
+    school: 'SVNIT Surat',
+    degree: 'B.Tech in Electrical Engineering',
   },
   bio: [
     'I’m Keval, a full-stack developer based in Bengaluru. I currently work as Tech – Operations Manager at Human Archive (YC W26), where I sit between engineering and operations — shipping internal tooling and keeping the machine running.',
-    'I studied at NIT Surat and grew up as an engineer through competitive programming: data structures, algorithms, and a lot of Codeforces. That habit of breaking problems down carries straight into how I build products — from design-system-driven frontends to backends, auth, and AI agent pipelines.',
+    'I studied Electrical Engineering at SVNIT Surat and grew up as an engineer through competitive programming: data structures, algorithms, and a lot of Codeforces. That habit of breaking problems down carries straight into how I build products — from design-system-driven frontends to backends, auth, and AI agent pipelines.',
   ],
   email: 'kevalhirpara2003@gmail.com',
   links: [
@@ -61,8 +61,8 @@ export const experience = [
   },
   {
     period: 'Education',
-    title: 'B.Tech',
-    org: 'NIT Surat',
+    title: 'B.Tech, Electrical Engineering',
+    org: 'SVNIT Surat',
     detail: 'Competitive programming, DSA, and low-level system design in C++.',
   },
 ]
@@ -82,6 +82,17 @@ export type Project = {
 }
 
 export const projects: Project[] = [
+  {
+    slug: 'whatsapp-scheduled-messages',
+    title: 'WhatsApp Scheduled Messages',
+    summary: 'Product case study: native message scheduling for 3B users — research, flows, metrics, rollout.',
+    kind: 'Product · Case study',
+    stack: ['Product strategy', 'UX flows', 'Metrics', 'GTM'],
+    year: '2026',
+    href: 'https://app.notion.com/p/WhatsApp-Scheduled-Messages-Product-Case-Study-3e9aed454708812abe89db94cda27bbb',
+    caseStudy: true,
+    palette: ['#0f3d2c', '#7ee2a8'],
+  },
   {
     slug: 'auros',
     title: 'Auros',
@@ -189,14 +200,28 @@ export const projects: Project[] = [
   },
 ]
 
-export type CaseStudy = {
+type CaseStudyBase = {
   slug: string
   title: string
   tagline: string
   role: string
   timeline: string
   stack: string[]
+  /** Header label for `stack`; defaults to "Stack". */
+  stackLabel?: string
   links: { label: string; href: string }[]
+}
+
+/**
+ * `product` case studies render a bespoke layout (see
+ * components/product-case-study.tsx); `engineering` ones use the shared
+ * overview → approach → outcome template.
+ */
+export type CaseStudy =
+  | (CaseStudyBase & { format: 'product' })
+  | (CaseStudyBase & EngineeringCaseStudy & { format?: 'engineering' })
+
+type EngineeringCaseStudy = {
   overview: string
   problem: string
   approach: { title: string; body: string }[]
@@ -206,6 +231,22 @@ export type CaseStudy = {
 }
 
 export const caseStudies: CaseStudy[] = [
+  {
+    slug: 'whatsapp-scheduled-messages',
+    format: 'product',
+    title: 'WhatsApp Scheduled Messages',
+    tagline: 'Say the right thing at the right time — a product case study on native message scheduling.',
+    role: 'Product management (independent concept)',
+    timeline: 'September 2026',
+    stack: ['User research', 'Personas & JTBD', 'UX flows', 'Metrics', 'RICE / MoSCoW', 'GTM'],
+    stackLabel: 'Methods',
+    links: [
+      {
+        label: 'Full case study on Notion',
+        href: 'https://app.notion.com/p/WhatsApp-Scheduled-Messages-Product-Case-Study-3e9aed454708812abe89db94cda27bbb',
+      },
+    ],
+  },
   {
     slug: 'auros',
     title: 'Auros',

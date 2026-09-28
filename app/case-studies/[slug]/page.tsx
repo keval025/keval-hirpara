@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { Reveal } from '@/components/reveal'
+import { ProductCaseStudy } from '@/components/product-case-study'
 import { ProjectCover } from '@/components/project-cover'
 import { caseStudies, projects } from '@/lib/portfolio'
 
@@ -34,7 +35,7 @@ export default async function CaseStudyPage({ params }: Props) {
   const meta = [
     { label: 'Role', value: study.role },
     { label: 'Timeline', value: study.timeline },
-    { label: 'Stack', value: study.stack.join(', ') },
+    { label: study.stackLabel ?? 'Stack', value: study.stack.join(', ') },
   ]
 
   return (
@@ -77,56 +78,60 @@ export default async function CaseStudyPage({ params }: Props) {
         <ProjectCover project={project} className="aspect-[16/9] w-full rounded-lg md:aspect-[21/9]" />
       </div>
 
-      <div className="mx-auto max-w-[1440px] px-4 py-20 sm:px-8 md:py-28">
-        <CaseSection label="Overview">
-          <p className="text-[clamp(1.25rem,2.2vw,1.75rem)] leading-snug tracking-tight">{study.overview}</p>
-        </CaseSection>
+      {study.format === 'product' ? (
+        <ProductCaseStudy />
+      ) : (
+        <div className="mx-auto max-w-[1440px] px-4 py-20 sm:px-8 md:py-28">
+          <CaseSection label="Overview">
+            <p className="text-[clamp(1.25rem,2.2vw,1.75rem)] leading-snug tracking-tight">{study.overview}</p>
+          </CaseSection>
 
-        <CaseSection label="The problem">
-          <p className="text-lg leading-relaxed">{study.problem}</p>
-        </CaseSection>
+          <CaseSection label="The problem">
+            <p className="text-lg leading-relaxed">{study.problem}</p>
+          </CaseSection>
 
-        <CaseSection label="Approach">
-          <ol className="grid gap-10 md:grid-cols-3 md:gap-6">
-            {study.approach.map((step, i) => (
-              <li key={step.title} className="list-none">
-                <Reveal delay={i * 100} className="border-t border-[var(--pf-line)] pt-4">
-                  <p className="pf-mono mb-3 text-[var(--pf-accent)]">{String(i + 1).padStart(2, '0')}</p>
-                  <h3 className="mb-2 text-xl font-medium tracking-tight">{step.title}</h3>
-                  <p className="pf-muted leading-relaxed">{step.body}</p>
-                </Reveal>
-              </li>
-            ))}
-          </ol>
-        </CaseSection>
+          <CaseSection label="Approach">
+            <ol className="grid gap-10 md:grid-cols-3 md:gap-6">
+              {study.approach.map((step, i) => (
+                <li key={step.title} className="list-none">
+                  <Reveal delay={i * 100} className="border-t border-[var(--pf-line)] pt-4">
+                    <p className="pf-mono mb-3 text-[var(--pf-accent)]">{String(i + 1).padStart(2, '0')}</p>
+                    <h3 className="mb-2 text-xl font-medium tracking-tight">{step.title}</h3>
+                    <p className="pf-muted leading-relaxed">{step.body}</p>
+                  </Reveal>
+                </li>
+              ))}
+            </ol>
+          </CaseSection>
 
-        <CaseSection label="Key decisions">
-          <ul className="space-y-4">
-            {study.decisions.map((d) => (
-              <li key={d} className="flex gap-4 text-lg leading-relaxed">
-                <span className="text-[var(--pf-accent)]">✳</span>
-                <span>{d}</span>
-              </li>
-            ))}
-          </ul>
-        </CaseSection>
+          <CaseSection label="Key decisions">
+            <ul className="space-y-4">
+              {study.decisions.map((d) => (
+                <li key={d} className="flex gap-4 text-lg leading-relaxed">
+                  <span className="text-[var(--pf-accent)]">✳</span>
+                  <span>{d}</span>
+                </li>
+              ))}
+            </ul>
+          </CaseSection>
 
-        <CaseSection label="Outcome">
-          <ul className="space-y-4">
-            {study.outcome.map((o) => (
-              <li key={o} className="border-b border-[var(--pf-line)] pb-4 text-lg leading-relaxed">
-                {o}
-              </li>
-            ))}
-          </ul>
-        </CaseSection>
+          <CaseSection label="Outcome">
+            <ul className="space-y-4">
+              {study.outcome.map((o) => (
+                <li key={o} className="border-b border-[var(--pf-line)] pb-4 text-lg leading-relaxed">
+                  {o}
+                </li>
+              ))}
+            </ul>
+          </CaseSection>
 
-        <CaseSection label="What I learned">
-          <blockquote className="pf-serif text-[clamp(1.8rem,4vw,3.2rem)] leading-[1.1] tracking-tight">
-            “{study.learned}”
-          </blockquote>
-        </CaseSection>
-      </div>
+          <CaseSection label="What I learned">
+            <blockquote className="pf-serif text-[clamp(1.8rem,4vw,3.2rem)] leading-[1.1] tracking-tight">
+              “{study.learned}”
+            </blockquote>
+          </CaseSection>
+        </div>
+      )}
 
       <Link
         href={`/case-studies/${next.slug}`}
