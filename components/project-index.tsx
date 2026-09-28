@@ -68,10 +68,13 @@ export function ProjectIndex({ projects }: { projects: Project[] }) {
                   {project.title}
                   {internal ? (
                     <span className="pf-chip ml-1 hidden sm:inline-flex">Case study</span>
-                  ) : href ? (
-                    <ArrowUpRight size={18} className="pf-muted" />
                   ) : (
-                    <span className="pf-chip pf-muted ml-1 hidden sm:inline-flex">Internal</span>
+                    <>
+                      {project.badge && (
+                        <span className="pf-chip pf-muted ml-1 hidden sm:inline-flex">{project.badge}</span>
+                      )}
+                      {href && <ArrowUpRight size={18} className="pf-muted" />}
+                    </>
                   )}
                 </span>
                 <span className="pf-muted mt-1 block text-sm md:hidden">{project.summary}</span>

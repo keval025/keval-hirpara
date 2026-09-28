@@ -114,6 +114,8 @@ export type Project = {
   year: string
   /** Omit for internal work with no public link. */
   href?: string
+  /** Small label shown next to the title, e.g. where the work was done. */
+  badge?: string
   live?: string
   caseStudy?: boolean
   /** Two colors used for the generated cover art. */
@@ -146,8 +148,9 @@ export const projects: Project[] = [
   {
     slug: 'deployment-inventory-tracker',
     title: 'Deployment & Inventory Tracker',
-    summary: 'Internal tool at Human Archive tracking devices across inventory, deployment, collection and offloading.',
-    kind: 'Internal tool · Operations',
+    summary: 'Human Archive product I ideated and built to track devices across inventory, deployment, collection and offloading.',
+    kind: 'Company product · Operations',
+    badge: 'Human Archive',
     stack: ['Web app', 'Ops lifecycle'],
     year: '2026',
     palette: ['#1c1917', '#f59e0b'],
@@ -155,8 +158,9 @@ export const projects: Project[] = [
   {
     slug: 'pdfoutliner',
     title: 'PDFOutliner',
-    summary: 'Turns unstructured PDFs into hierarchical data — 50+ pages in under 10 s, under 200 MB.',
-    kind: 'Data · Document processing',
+    summary: 'Hackathon project: turns unstructured PDFs into hierarchical data — 50+ pages in under 10 s, under 200 MB.',
+    kind: 'Hackathon · Document processing',
+    badge: 'Hackathon',
     stack: ['Python', 'Regex heuristics', 'OCR'],
     year: '2025',
     href: 'https://github.com/keval025/PDF_metadata_extractor',
