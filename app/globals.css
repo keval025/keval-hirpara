@@ -1,0 +1,277 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Inter:wght@100..900&display=swap');
+@import 'tailwindcss';
+
+/*
+ * Theme tokens. Light by default; dark follows the OS unless the visitor
+ * picks one with the header toggle (stored as data-pf-theme on <html>).
+ */
+:root {
+  --pf-bg: #f3f2ee;
+  --pf-surface: #eae8e2;
+  --pf-fg: #111110;
+  --pf-muted: #6d6c67;
+  --pf-line: rgb(17 17 16 / 0.12);
+  --pf-accent: #ff4a1c;
+  --pf-accent-fg: #ffffff;
+
+  --pf-sans: 'Inter', system-ui, sans-serif;
+  --pf-serif: 'Instrument Serif', Georgia, serif;
+  --pf-mono: 'JetBrains Mono', ui-monospace, monospace;
+  color-scheme: light;
+  background: var(--pf-bg);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.pf {
+  background: var(--pf-bg);
+  color: var(--pf-fg);
+  font-family: var(--pf-sans);
+  min-height: 100vh;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-pf-theme='light']) {
+    --pf-bg: #0e0e0d;
+    --pf-surface: #1a1a18;
+    --pf-fg: #ecebe6;
+    --pf-muted: #8f8e88;
+    --pf-line: rgb(236 235 230 / 0.12);
+    --pf-accent: #ff6a3d;
+    --pf-accent-fg: #0e0e0d;
+    color-scheme: dark;
+  }
+}
+
+:root[data-pf-theme='dark'] {
+  --pf-bg: #0e0e0d;
+  --pf-surface: #1a1a18;
+  --pf-fg: #ecebe6;
+  --pf-muted: #8f8e88;
+  --pf-line: rgb(236 235 230 / 0.12);
+  --pf-accent: #ff6a3d;
+  --pf-accent-fg: #0e0e0d;
+  color-scheme: dark;
+}
+
+.pf ::selection {
+  background: var(--pf-accent);
+  color: var(--pf-accent-fg);
+}
+
+.pf a:focus-visible,
+.pf button:focus-visible,
+.pf input:focus-visible,
+.pf textarea:focus-visible,
+.pf select:focus-visible {
+  outline: 2px solid var(--pf-accent);
+  outline-offset: 3px;
+}
+
+/* ---- Type helpers ---- */
+
+.pf-mono {
+  font-family: var(--pf-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.pf-serif {
+  font-family: var(--pf-serif);
+  font-weight: 400;
+}
+
+.pf-muted {
+  color: var(--pf-muted);
+}
+
+.pf-display {
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 0.92;
+}
+
+.pf-line {
+  border-color: var(--pf-line);
+}
+
+/* Underline that grows from the left on hover */
+.pf-link {
+  position: relative;
+  display: inline-block;
+}
+.pf-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pf-link:hover::after,
+.pf-link[aria-current='page']::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Text that rolls up to a copy of itself on hover */
+.pf-roll {
+  display: inline-flex;
+  flex-direction: column;
+  height: 1.2em;
+  line-height: 1.2em;
+  overflow: hidden;
+}
+.pf-roll > span {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pf-roll:hover > span,
+a:hover > .pf-roll > span,
+button:hover > .pf-roll > span {
+  transform: translateY(-100%);
+}
+
+/* ---- Fields ---- */
+
+.pf-field {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--pf-line);
+  padding: 0.9rem 0;
+  font-size: 1.05rem;
+  color: var(--pf-fg);
+  outline: none;
+  transition: border-color 0.25s ease;
+  border-radius: 0;
+}
+.pf-field::placeholder {
+  color: var(--pf-muted);
+  opacity: 0.7;
+}
+.pf .pf-field:focus,
+.pf .pf-field:focus-visible {
+  outline: none;
+  border-bottom-color: var(--pf-fg);
+}
+
+/* ---- Pill button ---- */
+
+.pf-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  border-radius: 999px;
+  padding: 0.85rem 1.4rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background: var(--pf-fg);
+  color: var(--pf-bg);
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+.pf-btn:hover {
+  background: var(--pf-accent);
+  color: var(--pf-accent-fg);
+}
+.pf-btn:disabled {
+  opacity: 0.55;
+  cursor: progress;
+}
+
+.pf-chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--pf-line);
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  font-family: var(--pf-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.02em;
+}
+
+/* ---- Hero entrance ---- */
+
+@keyframes pf-rise {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.pf-rise {
+  display: block;
+  overflow: hidden;
+}
+.pf-rise > span {
+  display: block;
+  animation: pf-rise 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+
+@keyframes pf-blink {
+  50% {
+    opacity: 0.2;
+  }
+}
+.pf-pulse {
+  animation: pf-blink 1.6s ease-in-out infinite;
+}
+
+/* ---- Marquee ---- */
+
+@keyframes pf-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.pf-marquee {
+  display: flex;
+  width: max-content;
+  animation: pf-marquee 40s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pf-rise > span,
+  .pf-marquee,
+  .pf-pulse {
+    animation: none;
+  }
+}
+
+/* ---- Fade-in-on-scroll reveal (see components/reveal.tsx) ---- */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal='true'] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+.pf button:not(:disabled),
+.pf [role='button']:not(:disabled) {
+  cursor: pointer;
+}
