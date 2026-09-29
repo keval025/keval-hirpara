@@ -7,18 +7,36 @@
 export const notionUrl =
   'https://app.notion.com/p/Case-Study-Reducing-Unusable-Recordings-in-Embodied-AI-Data-Collection-3e6aed45470881909155c902b754360d'
 
+/** The illustrative program model every figure on the page derives from. */
+export const model = {
+  hoursPerMonth: 1200,
+  yieldBefore: 60,
+  yieldAfter: 80,
+  costPerHour: 40,
+  buildCost: 24000,
+}
+
+/** Headline numbers from the case study banner. */
+export const bannerStats = [
+  { value: '40%', label: 'of worn device-hours lost to failed recordings', hero: true },
+  { value: '60→80%', label: 'usable yield target' },
+  { value: '+33%', label: 'more usable data, same budget' },
+  { value: '−25%', label: 'cost per usable hour' },
+  { value: '70%', label: 'of losses catchable on site' },
+]
+
 export const disclaimer =
   'All figures are illustrative assumptions for a mid-sized wearable-kit program unless marked otherwise.'
 
 export const headline =
-  'Moving quality checks from the data center to the collection site can lift usable yield from 68% to 85% and save roughly $8,000 a month in wasted collection cost.'
+  'Moving quality checks from the data center to the collection site can lift usable yield from 60% to 80% and save roughly $9,600 a month in wasted collection cost.'
 
 export const summary = [
-  { label: 'Problem', body: 'About 1 in 3 recorded hours is unusable, and failures surface ~18 days after recording.' },
+  { label: 'Problem', body: 'About 2 in 5 recorded hours are unusable, and failures surface ~18 days after recording.' },
   { label: 'North star', body: 'Usable yield = usable hours ÷ recorded hours.' },
   { label: 'Key insight', body: 'The cost of a failure depends on how late it is detected, not just on how often it happens.' },
   { label: 'Solution (MVP)', body: 'Automated pre-session check + on-site exit validation + offload integrity gate.' },
-  { label: 'Target', body: 'Usable yield 68% → 85% in one quarter, with setup time up by no more than 3 minutes.' },
+  { label: 'Target', body: 'Usable yield 60% → 80% in one quarter, with setup time up by no more than 3 minutes.' },
   { label: 'Role shown', body: 'Problem framing, metric design, root cause analysis, prioritization, experiment design.' },
 ]
 
@@ -64,7 +82,7 @@ export const setting =
   'A program of 40 collectors records household and workplace tasks with a head camera, wrist cameras and IMUs — about 1,200 hours a month.'
 
 export const problemStatement =
-  '32% of recorded hours are discarded at QA. By then the collector has left the site, the task setup is gone, and the only fix is a full re-record.'
+  '40% of recorded hours are discarded at QA. By then the collector has left the site, the task setup is gone, and the only fix is a full re-record.'
 
 export const costPerHour = [
   { item: 'Collector pay and travel', usd: 18 },
@@ -132,7 +150,7 @@ export const metricTree = {
 export const metrics = {
   columns: ['Metric', 'Type', 'Baseline', 'Target'],
   rows: [
-    ['Usable yield', 'North star', '68%', '85%'],
+    ['Usable yield', 'North star', '60%', '80%'],
     ['Detection latency (record → verdict)', 'Driver', '~18 days', 'Under 15 min for most failures'],
     ['Re-records completed on site', 'Driver', '~0%', '60% of detected failures'],
     ['Session setup time', 'Guardrail', '8 min', 'No more than +3 min'],
@@ -243,17 +261,17 @@ export const coreTradeoff =
 export const impact = {
   columns: ['Measure (per month)', 'Before', 'After MVP', 'Change'],
   rows: [
-    ['Usable yield', '68%', '85%', '+17 points'],
-    ['Usable hours delivered', '816', '1,020', '+204 hours (+25%)'],
-    ['Hours wasted', '384', '180', '−204 hours'],
-    ['Wasted spend', '$15,360', '$7,200', '−$8,160'],
-    ['Cost per usable hour', '$58.80', '$47.10', '−20%'],
+    ['Usable yield', '60%', '80%', '+20 points'],
+    ['Usable hours delivered', '720', '960', '+240 hours (+33%)'],
+    ['Hours wasted', '480', '240', '−240 hours'],
+    ['Wasted spend', '$19,200', '$9,600', '−$9,600'],
+    ['Cost per usable hour', '$66.67', '$50.00', '−25%'],
     ['Typical detection latency', '~18 days', 'Minutes for most failures', 'Fixable on site'],
   ],
 }
 
 export const payback =
-  'The MVP needs about 12 person-weeks. At an assumed $2,000 per person-week that’s $24,000 — recovered in roughly 3 months of savings.'
+  'The MVP needs about 12 person-weeks. At an assumed $2,000 per person-week that’s $24,000 — recovered in about 2.5 months of savings.'
 
 export const learnings = [
   'Frame quality as a pipeline problem, not a QA problem. The cheapest fix sits at the point of recording.',

@@ -136,8 +136,8 @@ export const projects: Project[] = [
   },
   {
     slug: 'embodied-ai-data-quality',
-    title: 'Embodied AI Data Yield',
-    summary: 'Product case study: shifting quality checks to the collection site to lift usable yield 68% → 85%.',
+    title: 'Reducing Unusable Recordings in Embodied AI Data Collection',
+    summary: 'Product case study: moving quality checks to where data is recorded to lift usable yield 60% → 80%.',
     kind: 'Product · Case study',
     stack: ['Metric design', 'Root cause analysis', 'RICE', 'Experiment design'],
     year: '2026',
@@ -319,8 +319,9 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: 'embodied-ai-data-quality',
     format: 'product',
-    title: 'Embodied AI Data Yield',
-    tagline: 'Reducing unusable recordings in embodied-AI data collection by catching failures where they happen.',
+    title: 'Reducing Unusable Recordings in Embodied AI Data Collection',
+    tagline:
+      'A failure costs seconds on site and a full re-collection at QA. This case moves the checks to where the data is recorded.',
     role: 'Product management (problem framing, metrics, RCA, experiment design)',
     timeline: 'September 2026',
     stack: ['Metric trees', 'Root cause analysis', 'RICE', 'A/B pilot design', 'Unit economics'],

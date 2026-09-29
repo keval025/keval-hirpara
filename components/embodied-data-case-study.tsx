@@ -5,9 +5,25 @@ import * as cs from '@/lib/case-studies/embodied-ai-data-quality'
 
 export function EmbodiedDataCaseStudy() {
   const totalCost = cs.costPerHour.reduce((sum, c) => sum + c.usd, 0)
+  const lossRate = 100 - cs.model.yieldBefore
+  const monthlyWaste = cs.model.hoursPerMonth * (lossRate / 100) * totalCost
 
   return (
     <div className="mx-auto max-w-[1440px] px-4 py-16 sm:px-8 md:py-24">
+      <dl className="mb-12 grid gap-px overflow-hidden rounded-lg bg-[var(--pf-line)] sm:grid-cols-2 lg:grid-cols-5">
+        {cs.bannerStats.map((s) => (
+          <div key={s.label} className={`p-5 ${s.hero ? 'bg-[var(--pf-fg)] text-[var(--pf-bg)]' : 'bg-[var(--pf-surface)]'}`}>
+            <dt className="sr-only">{s.label}</dt>
+            <dd>
+              <span className="pf-display block text-[clamp(2.2rem,4vw,3.2rem)] tabular-nums">{s.value}</span>
+              <span className={`mt-2 block text-sm ${s.hero ? 'opacity-75' : 'pf-muted'}`} aria-hidden>
+                {s.label}
+              </span>
+            </dd>
+          </div>
+        ))}
+      </dl>
+
       <p className="pf-muted mb-12 max-w-2xl border-l-2 border-[var(--pf-accent)] pl-4 text-sm">{cs.disclaimer}</p>
 
       <Section index="00" label="Summary" title={cs.headline}>
@@ -74,8 +90,11 @@ export function EmbodiedDataCaseStudy() {
           </div>
           <div className="flex flex-col justify-center rounded-lg bg-[var(--pf-fg)] p-6 text-[var(--pf-bg)]">
             <p className="pf-mono mb-2 opacity-70">Monthly waste</p>
-            <p className="pf-display text-[clamp(3rem,6vw,5rem)]">$15,360</p>
-            <p className="mt-2 text-sm opacity-80">1,200 h × 32% × ${totalCost} — before counting the delay to the ML team.</p>
+            <p className="pf-display text-[clamp(3rem,6vw,5rem)]">${monthlyWaste.toLocaleString('en-US')}</p>
+            <p className="mt-2 text-sm opacity-80">
+              {cs.model.hoursPerMonth.toLocaleString('en-US')} h × {lossRate}% × ${totalCost} — before counting the delay to the
+              ML team.
+            </p>
           </div>
         </div>
       </Section>
@@ -291,7 +310,7 @@ export function EmbodiedDataCaseStudy() {
         <p className="pf-serif text-[clamp(1.4rem,2.6vw,2rem)] leading-snug">{cs.coreTradeoff}</p>
       </Section>
 
-      <Section index="11" label="Expected impact" title="25% more usable data from the same budget">
+      <Section index="11" label="Expected impact" title="33% more usable data from the same budget">
         <Table columns={cs.impact.columns} rows={cs.impact.rows} highlight={3} />
         <p className="pf-muted mb-10 mt-4">{cs.payback}</p>
         <p className="pf-mono pf-muted mb-4">Try it with your own numbers</p>

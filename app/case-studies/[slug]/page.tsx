@@ -55,7 +55,11 @@ export default async function CaseStudyPage({ params }: Props) {
         <p className="pf-mono pf-muted mb-4">
           Case study {String(index + 1).padStart(2, '0')} / {String(caseStudies.length).padStart(2, '0')}
         </p>
-        <h1 className="pf-display text-[clamp(3.2rem,11vw,10rem)]">
+        <h1
+          className={`pf-display ${
+            study.title.length > 32 ? 'max-w-6xl text-[clamp(2.4rem,6.5vw,6rem)]' : 'text-[clamp(3.2rem,11vw,10rem)]'
+          }`}
+        >
           <span className="pf-rise">
             <span>{study.title}</span>
           </span>

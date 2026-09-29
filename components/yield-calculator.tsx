@@ -1,6 +1,7 @@
 'use client'
 
 import { useId, useState } from 'react'
+import { model } from '@/lib/case-studies/embodied-ai-data-quality'
 
 /**
  * Lets a reader plug in their own program numbers and see the waste,
@@ -50,11 +51,11 @@ function Slider({
 }
 
 export function YieldCalculator() {
-  const [hours, setHours] = useState(1200)
-  const [before, setBefore] = useState(68)
-  const [after, setAfter] = useState(85)
-  const [cost, setCost] = useState(40)
-  const buildCost = 24000
+  const [hours, setHours] = useState(model.hoursPerMonth)
+  const [before, setBefore] = useState(model.yieldBefore)
+  const [after, setAfter] = useState(model.yieldAfter)
+  const [cost, setCost] = useState(model.costPerHour)
+  const buildCost = model.buildCost
 
   const target = Math.max(after, before)
   const wasteBefore = hours * (1 - before / 100) * cost
@@ -66,10 +67,10 @@ export function YieldCalculator() {
   const cpuAfter = (hours * cost) / (hours * (target / 100))
 
   const reset = () => {
-    setHours(1200)
-    setBefore(68)
-    setAfter(85)
-    setCost(40)
+    setHours(model.hoursPerMonth)
+    setBefore(model.yieldBefore)
+    setAfter(model.yieldAfter)
+    setCost(model.costPerHour)
   }
 
   const tiles = [
