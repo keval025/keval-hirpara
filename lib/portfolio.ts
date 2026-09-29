@@ -146,6 +146,18 @@ export const projects: Project[] = [
     palette: ['#0d1b2a', '#5ec8ff'],
   },
   {
+    slug: 'decide-ai',
+    title: 'DecideAI',
+    summary:
+      'AI decision assistant: asks the few clarifying questions that matter, then scores your options in a weighted decision matrix you can re-weight.',
+    kind: 'AI product · Full-stack',
+    stack: ['Next.js 16', 'Gemini (AI SDK)', 'Zod', 'Neon + Drizzle', 'Vitest'],
+    year: '2026',
+    href: 'https://github.com/keval025/decide-ai',
+    badge: 'Latest',
+    palette: ['#111827', '#a78bfa'],
+  },
+  {
     slug: 'deployment-inventory-tracker',
     title: 'Deployment & Inventory Tracker',
     summary: 'Human Archive product I ideated and built to track devices across inventory, deployment, collection and offloading.',
