@@ -194,7 +194,6 @@ export const projects: Project[] = [
     stack: ['Claude Code', 'Subagents', 'Prompt design'],
     year: '2026',
     href: 'https://github.com/keval025/youtube-script-agent',
-    caseStudy: true,
     palette: ['#ff3d2e', '#1a1a1a'],
   },
   {
@@ -206,7 +205,6 @@ export const projects: Project[] = [
     year: '2026',
     href: 'https://github.com/keval025/AURELIA',
     live: 'https://aurelia-coffee-house-mu.vercel.app',
-    caseStudy: true,
     palette: ['#faf7f2', '#a9843d'],
   },
   {
@@ -328,85 +326,6 @@ export const caseStudies: CaseStudy[] = [
     stack: ['Metric trees', 'Root cause analysis', 'RICE', 'A/B pilot design', 'Unit economics'],
     stackLabel: 'Methods',
     links: [{ label: 'Full case study on Notion', href: 'https://app.notion.com/p/Case-Study-Reducing-Unusable-Recordings-in-Embodied-AI-Data-Collection-3e6aed45470881909155c902b754360d' }],
-  },
-  {
-    slug: 'youtube-script-agent',
-    title: 'YouTube Script Agent',
-    tagline: 'An AI pipeline that refuses to make things up.',
-    role: 'Agent design, prompt engineering',
-    timeline: '2026',
-    stack: ['Claude Code', 'Orchestrator + subagents', 'Markdown specs'],
-    links: [{ label: 'Source on GitHub', href: 'https://github.com/keval025/youtube-script-agent' }],
-    overview:
-      'A Claude Code agent that turns a topic brief into a complete, ready-to-shoot YouTube script — research, structure, dialogue, fact-check, and packaging metadata — in one run.',
-    problem:
-      'Single-prompt script generators hallucinate statistics, drift in tone, and ignore pacing. Creators end up fact-checking everything by hand, which defeats the purpose.',
-    approach: [
-      {
-        title: 'Orchestrator + specialists',
-        body: 'CLAUDE.md defines a five-stage pipeline and the orchestrator’s role. Research, writing, fact-checking, and metadata are each delegated to a dedicated subagent with narrow instructions.',
-      },
-      {
-        title: 'One source of truth',
-        body: 'The Stage 1 Research Brief is the only factual basis later stages may use. The writer is explicitly forbidden from pulling facts from its own memory.',
-      },
-      {
-        title: 'A fact-check gate',
-        body: 'Stage 4 traces every claim back to the brief and flags anything it cannot verify with ⚠️ UNVERIFIED rather than silently passing it through.',
-      },
-    ],
-    decisions: [
-      'Required inputs (audience, length, tone, region, CTA) are always asked for — the agent never silently defaults.',
-      'Word budgets are computed from spoken pace (130–150 wpm), not reading pace.',
-      'Output is a two-column AUDIO / VISUAL script, the format editors actually shoot from.',
-    ],
-    outcome: [
-      'One command produces research, a beat sheet, a full script, and titles, thumbnail text, description, and tags.',
-      'Hard rules — no invented stats, quotes, or source links — enforced structurally rather than by hope.',
-    ],
-    learned:
-      'Reliability in LLM systems comes from architecture: isolate responsibilities, constrain inputs, and gate outputs.',
-  },
-  {
-    slug: 'aurelia',
-    title: 'AURELIA Coffee House',
-    tagline: 'An editorial café site with a real ordering flow and zero backend.',
-    role: 'Design & frontend development',
-    timeline: '2026',
-    stack: ['Next.js 16', 'React 19', 'Tailwind CSS v4', 'shadcn/ui', 'Web3Forms'],
-    links: [
-      { label: 'Live site', href: 'https://aurelia-coffee-house-mu.vercel.app' },
-      { label: 'Source on GitHub', href: 'https://github.com/keval025/AURELIA' },
-    ],
-    overview:
-      'A single-page marketing and ordering site for a fictional neighbourhood coffee house — hero and story sections, a filterable menu, favourites, a cart drawer, reservations, and a newsletter.',
-    problem:
-      'Small hospitality businesses need something that feels boutique and actually works — a menu people can browse, a bag they can build, a table they can book — without paying for a backend.',
-    approach: [
-      {
-        title: 'Editorial design language',
-        body: 'Warm ivory, espresso charcoal, and a muted brass accent; Cormorant Garamond for display and Inter for body; scroll reveals driven by IntersectionObserver and pure CSS.',
-      },
-      {
-        title: 'A cart that behaves',
-        body: 'Adding an existing item increments quantity, rows are editable inline, and subtotal, tax, and total update live. Cart and favourites persist to localStorage and are rebuilt against the current menu on load, so prices are never stale.',
-      },
-      {
-        title: 'Forms without a server',
-        body: 'Reservation and newsletter forms validate inline and deliver via Web3Forms when a key is configured — and fall back to a local success state when it is not, so the demo always works.',
-      },
-    ],
-    decisions: [
-      'Storage reads happen only in mount effects and are guarded with try/catch — blocked storage or bad JSON can’t break the page.',
-      'Product name is the identity key, kept deliberately simple and documented in the README.',
-      'Deployed on Vercel with no extra configuration.',
-    ],
-    outcome: [
-      'A fully responsive, deployed site with a complete browse → bag → checkout → reserve flow.',
-      'Documented customisation points so the owner can edit menu, tax, and hours in one file.',
-    ],
-    learned:
-      'The details users never notice — stale prices, duplicated rows, a storage exception — are what separate a template from a product.',
   },
 ]
 

@@ -7,7 +7,7 @@ Minimal, editorial design with light/dark themes. Sections:
 | Route | Contents |
 | --- | --- |
 | `/` | Hero, about & skills, case studies, project index, playground, contact |
-| `/case-studies/[slug]` | Product case studies (WhatsApp Scheduled Messages, Embodied AI Data Yield) and engineering case studies (Auros, Atelier, YouTube Script Agent, AURELIA) |
+| `/case-studies/[slug]` | Product case studies: WhatsApp Scheduled Messages, Embodied AI Data Yield |
 | `/playground` | Interactive experiments: dot field, sort visualizer, BFS pathfinder, kinetic type |
 
 ## Stack
