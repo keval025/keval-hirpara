@@ -174,7 +174,6 @@ export const projects: Project[] = [
     stack: ['React 19', 'Vite 7', 'Tailwind v4', 'React Router 7'],
     year: '2026',
     href: 'https://github.com/keval025/Auro',
-    caseStudy: true,
     palette: ['#012624', '#e5a6ff'],
   },
   {
@@ -185,7 +184,6 @@ export const projects: Project[] = [
     stack: ['React', 'Vite', 'Tailwind', 'InsForge BaaS'],
     year: '2026',
     href: 'https://github.com/keval025/Agents',
-    caseStudy: true,
     palette: ['#1d1b18', '#d9c3a0'],
   },
   {
@@ -330,82 +328,6 @@ export const caseStudies: CaseStudy[] = [
     stack: ['Metric trees', 'Root cause analysis', 'RICE', 'A/B pilot design', 'Unit economics'],
     stackLabel: 'Methods',
     links: [{ label: 'Full case study on Notion', href: 'https://app.notion.com/p/Case-Study-Reducing-Unusable-Recordings-in-Embodied-AI-Data-Collection-3e6aed45470881909155c902b754360d' }],
-  },
-  {
-    slug: 'auros',
-    title: 'Auros',
-    tagline: 'A fintech marketing platform where every pixel traces back to a written spec.',
-    role: 'Design engineering, frontend architecture',
-    timeline: '2026',
-    stack: ['React 19', 'Vite 7', 'Tailwind CSS v4', 'React Router 7', 'Canvas / SVG'],
-    links: [{ label: 'Source on GitHub', href: 'https://github.com/keval025/Auro' }],
-    overview:
-      'Auros is the marketing site and frontend platform for a fictional institutional liquidity and market-infrastructure firm. The brief was an “abyssal fintech terminal”: near-black teal canvas, bioluminescent data orbs, and instrument-like components.',
-    problem:
-      'Visual consistency on marketing sites erodes fast — every new section invents its own spacing, color, and button. I wanted a codebase where design decisions could not drift, and where the motion felt premium without shipping an animation library.',
-    approach: [
-      {
-        title: 'Design system first',
-        body: 'Before writing components I wrote DESIGN.md — color roles, type scale, radii, and do’s and don’ts. It is the authoritative source; Tailwind v4 @theme tokens mirror it, and a small JS token mirror exists only for canvas and SVG.',
-      },
-      {
-        title: 'Composable layout primitives',
-        body: 'An AppShell, Container, and PageHeader layer, a tiny UI kit (Button, Card, Field, Stat, SectionHeading), and page “bands” composed from them. New pages are assembled, not designed from scratch.',
-      },
-      {
-        title: 'A 120-line motion layer',
-        body: 'Reveal, Parallax, ScrollProgressBar, and CountUp all share one requestAnimationFrame loop. No CSS-in-JS, no animation dependency — and reduced-motion is respected everywhere.',
-      },
-    ],
-    decisions: [
-      'Color is rationed: achromatic whites carry content; chromatic gradients are reserved for atmosphere and a single signature pill button.',
-      'Depth through surface tint instead of shadows — cards lift with teal-tinted fills, reading as depth-of-water.',
-      'Documented known gaps (missing font files, test targets, unbuilt routes) instead of hiding them — ARCHITECTURE.md sketches the backend this is Phase 0 of.',
-    ],
-    outcome: [
-      'A complete, responsive, accessible frontend with zero UI dependencies beyond React and the router.',
-      'Three living docs (DESIGN, FRONTEND, ARCHITECTURE) that let anyone extend the site without asking me.',
-    ],
-    learned:
-      'Writing the spec first is slower on day one and dramatically faster by day five. The constraint is the feature.',
-  },
-  {
-    slug: 'atelier',
-    title: 'Atelier',
-    tagline: 'A fashion storefront that keeps selling even when its backend is down.',
-    role: 'Full-stack development',
-    timeline: '2026',
-    stack: ['React 18', 'Vite 6', 'Tailwind CSS', 'InsForge BaaS', 'React Router 6'],
-    links: [{ label: 'Source on GitHub', href: 'https://github.com/keval025/Agents' }],
-    overview:
-      'Atelier is a modern fashion e-commerce app. Products, categories, variants, and orders are served from a live InsForge database through a dedicated service layer, with auth, wishlist, cart, checkout, and order history.',
-    problem:
-      'Most demo storefronts trust the client: the cart says an item costs $40, so the order costs $40. I wanted a checkout that could not be tampered with, and a catalogue that degrades gracefully instead of rendering a blank page when the API fails.',
-    approach: [
-      {
-        title: 'A service layer between UI and data',
-        body: 'productService, categoryService, and orderService own every query. Components never talk to the SDK directly, which made fallback and validation logic live in exactly one place.',
-      },
-      {
-        title: 'Graceful fallback',
-        body: 'If a fetch fails or returns empty, services transparently fall back to bundled mock data — the storefront stays browsable during an outage.',
-      },
-      {
-        title: 'Server-validated checkout',
-        body: 'At checkout, stock levels and prices are re-read from the database per variant (size / color). Client cart data can never set the final total; orders are written with line items to orders and order_items.',
-      },
-    ],
-    decisions: [
-      'Context providers for Auth, Cart, Wishlist, and Toast — small enough that a state library would be overhead.',
-      'Debounced search in both the navbar and shop page via a shared useDebounce hook.',
-      'Human-readable auth error messages instead of raw SDK errors.',
-    ],
-    outcome: [
-      'Full shopping loop: sign up → browse & filter → quick view → cart → validated checkout → order history.',
-      'A resilient catalogue that never shows an empty state because of a network blip.',
-    ],
-    learned:
-      'Trust boundaries are a design decision, not a backend detail. Deciding early what the client is allowed to assert simplified everything after.',
   },
   {
     slug: 'youtube-script-agent',
