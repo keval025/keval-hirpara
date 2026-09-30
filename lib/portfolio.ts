@@ -146,6 +146,17 @@ export const projects: Project[] = [
     palette: ['#0d1b2a', '#5ec8ff'],
   },
   {
+    slug: 'ola-parivaar',
+    title: 'Ola Parivaar',
+    summary: 'Product case study: shared electric mobility for India’s non-drivers, booked by their family — a path to 100M daily riders.',
+    kind: 'Product · Case study',
+    stack: ['Product strategy', 'Market sizing', 'Unit economics', 'GTM'],
+    year: '2026',
+    href: 'https://app.notion.com/p/Case-Study-Ola-Parivaar-Mobility-for-India-s-Non-Drivers-3ebaed45470881d68115edb9360b4721',
+    caseStudy: true,
+    palette: ['#10402f', '#f2b84b'],
+  },
+  {
     slug: 'decide-ai',
     title: 'DecideAI',
     summary:
@@ -290,6 +301,8 @@ type CaseStudyBase = {
   stack: string[]
   /** Header label for `stack`; defaults to "Stack". */
   stackLabel?: string
+  /** Replaces the generated cover on the case study page (file in /public). */
+  coverImage?: { src: string; alt: string; width: number; height: number }
   links: { label: string; href: string }[]
 }
 
@@ -339,6 +352,24 @@ export const caseStudies: CaseStudy[] = [
     stack: ['Metric trees', 'Root cause analysis', 'RICE', 'A/B pilot design', 'Unit economics'],
     stackLabel: 'Methods',
     links: [{ label: 'Full case study on Notion', href: 'https://app.notion.com/p/Case-Study-Reducing-Unusable-Recordings-in-Embodied-AI-Data-Collection-3e6aed45470881909155c902b754360d' }],
+  },
+  {
+    slug: 'ola-parivaar',
+    format: 'product',
+    title: 'Ola Parivaar',
+    tagline:
+      'Mobility for India’s non-drivers: safe, step-free electric rides for the people who can’t drive themselves, booked and paid for by their family.',
+    role: 'Product management (APM assignment, Ola Electric)',
+    timeline: 'September – October 2026',
+    stack: ['Problem framing', 'JTBD & personas', 'Market sizing', 'MoSCoW', 'Unit economics', 'Go-to-market', 'Metrics'],
+    stackLabel: 'Methods',
+    coverImage: {
+      src: '/case-studies/ola-parivaar-cover.png',
+      alt: 'Ola Parivaar — Mobility for India’s non-drivers. 100M daily riders by 2035 (target); 5 rider groups, 1 fleet.',
+      width: 1500,
+      height: 600,
+    },
+    links: [{ label: 'Full case study on Notion', href: 'https://app.notion.com/p/Case-Study-Ola-Parivaar-Mobility-for-India-s-Non-Drivers-3ebaed45470881d68115edb9360b4721' }],
   },
 ]
 

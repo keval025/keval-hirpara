@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import { Reveal } from '@/components/reveal'
 import { EmbodiedDataCaseStudy } from '@/components/embodied-data-case-study'
+import { OlaParivaarCaseStudy } from '@/components/ola-parivaar-case-study'
 import { ProjectCover } from '@/components/project-cover'
 import { WhatsAppCaseStudy } from '@/components/whatsapp-case-study'
 import { caseStudies, projects } from '@/lib/portfolio'
@@ -14,6 +15,7 @@ type Props = { params: Promise<{ slug: string }> }
 const productBodies: Record<string, React.ComponentType> = {
   'whatsapp-scheduled-messages': WhatsAppCaseStudy,
   'embodied-ai-data-quality': EmbodiedDataCaseStudy,
+  'ola-parivaar': OlaParivaarCaseStudy,
 }
 
 export const dynamicParams = false
@@ -87,7 +89,18 @@ export default async function CaseStudyPage({ params }: Props) {
       </header>
 
       <div className="mx-auto mt-12 max-w-[1440px] px-4 sm:px-8">
-        <ProjectCover project={project} className="aspect-[16/9] w-full rounded-lg md:aspect-[21/9]" />
+        {study.coverImage ? (
+          // Author-supplied cover artwork for this case study.
+          <img
+            src={study.coverImage.src}
+            alt={study.coverImage.alt}
+            width={study.coverImage.width}
+            height={study.coverImage.height}
+            className="h-auto w-full rounded-lg"
+          />
+        ) : (
+          <ProjectCover project={project} className="aspect-[16/9] w-full rounded-lg md:aspect-[21/9]" />
+        )}
       </div>
 
       {study.format === 'product' ? (

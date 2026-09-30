@@ -5,11 +5,11 @@ import { Reveal } from '@/components/reveal'
 
 export function Section({ index, label, title, children }: { index: string; label: string; title?: ReactNode; children: ReactNode }) {
   return (
-    <Reveal as="section" className="grid gap-6 border-t border-[var(--pf-line)] py-12 md:grid-cols-12 md:py-16">
+    <Reveal as="section" className="grid grid-cols-1 gap-6 border-t border-[var(--pf-line)] py-12 md:grid-cols-12 md:py-16">
       <h2 className="pf-mono pf-muted md:col-span-3">
         {index} — {label}
       </h2>
-      <div className="md:col-span-9">
+      <div className="min-w-0 md:col-span-9">
         {title && <p className="mb-8 text-[clamp(1.5rem,3vw,2.4rem)] font-medium leading-[1.1] tracking-[-0.03em]">{title}</p>}
         {children}
       </div>
